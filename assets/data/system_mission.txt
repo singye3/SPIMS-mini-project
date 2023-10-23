@@ -1,0 +1,4 @@
+The mission of the Staff Personal Information Management System (SPIMS) is to provide a secure and efficient 
+platform for managing personal information within an organization. We aim to streamline the process of accessing, 
+updating, and maintaining staff members' data, managers' oversight, and students' engagement. SPIMS prioritizes 
+data privacy, user autonomy, and data integrity to ensure a trusted and user-centric experience.
