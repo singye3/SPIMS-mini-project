@@ -27,7 +27,7 @@ class _DashboardState extends State<Dashboard> {
       child: Column(
         children: [
           /// Header Part
-          HeaderWidget(),
+          const HeaderWidget(),
           Expanded(
             child: SingleChildScrollView(
               child: Row(
@@ -44,7 +44,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           SearchSection(),
                           if (AppResponsive.isMobile(context)) ...{
-                            CalendarWidget(),
+                            const CalendarWidget(),
                             const SizedBox(
                               height: 20,
                             ),
@@ -58,10 +58,10 @@ class _DashboardState extends State<Dashboard> {
                     Expanded(
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
+                        child: const Column(
                           children: [
                             CalendarWidget(),
-                            const SizedBox(
+                            SizedBox(
                               height: 20,
                             ),
                             // ProfileCardWidget(),
@@ -80,7 +80,7 @@ class _DashboardState extends State<Dashboard> {
 }
 
 Widget SearchSection() {
-  TextEditingController _searchController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   void handleSubmitted(String value) {
     // Perform the desired action when the user presses enter or submits the search
@@ -94,7 +94,7 @@ Widget SearchSection() {
         children: [
           Expanded(
             child: TextField(
-              controller: _searchController,
+              controller: searchController,
               decoration: InputDecoration(
                 hintText: 'Search',
                 filled: true,

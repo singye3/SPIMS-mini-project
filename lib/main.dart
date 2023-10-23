@@ -6,7 +6,7 @@ import 'package:spims/pages/home_page.dart';
 import './controllers/menu_controller.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

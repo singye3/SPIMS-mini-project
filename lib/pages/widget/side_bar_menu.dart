@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:spims/pages/aboutus/about_us_page.dart';
+import 'package:spims/pages/contactus/contact_us_page.dart';
 import '../../common/app_colors.dart';
 
 class SideBar extends StatefulWidget {
+  const SideBar({super.key});
+
   @override
   _SideBarState createState() => _SideBarState();
 }
@@ -55,14 +59,27 @@ class _SideBarState extends State<SideBar> {
             DrawerListTile(
               title: "About Us",
               icon: Icons.info_outline,
-              press: () {},
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const AboutUsPage()));
+              },
+            ),
+            DrawerListTile(
+              title: "Contact Us",
+              icon: Icons.info_outline,
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ContactUsPage()));
+              },
             ),
             DrawerListTile(
               title: "Log Out",
               icon: Icons.logout_outlined,
               press: () {},
             ),
-            Spacer(),
+            const Spacer(),
             Image.asset("assets/sidebar_image.png")
             // Image.asset(
             //   "assets/back.png",
@@ -82,17 +99,17 @@ class DrawerListTile extends StatelessWidget {
   final VoidCallback press;
 
   const DrawerListTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     required this.press,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: press,
-      contentPadding: EdgeInsets.symmetric(horizontal: 20),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
       title: Row(
         children: [
           Icon(
@@ -100,7 +117,7 @@ class DrawerListTile extends StatelessWidget {
             color: AppColor.white,
             size: 24,
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Text(
             title,
             style: TextStyle(color: AppColor.white),

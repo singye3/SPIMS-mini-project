@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageWidget extends StatefulWidget {
+  const ImageWidget({super.key});
+
   @override
   _ImageWidgetState createState() => _ImageWidgetState();
 }
@@ -22,7 +24,7 @@ class _ImageWidgetState extends State<ImageWidget> {
             height: 120,
             color: Colors.grey[300],
             child: selectedImage.isEmpty
-                ? Icon(
+                ? const Icon(
                     Icons.add_a_photo,
                     size: 60,
                     semanticLabel: 'Add Image',

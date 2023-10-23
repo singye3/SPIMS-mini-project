@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideBar(),
+      drawer: const SideBar(),
       key: Provider.of<MenuControllers>(context, listen: false).scaffoldKey,
       backgroundColor: AppColor.bgSideMenu,
       body: const SafeArea(

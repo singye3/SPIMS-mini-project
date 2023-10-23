@@ -1,0 +1,26 @@
+[
+    {
+      "name": "Singye Dorji",
+      "email": "singyedorji0221@gmail.com",
+      "phone": "+975-17704162",
+      "image": "assets/user2.jpg"
+    },
+    {
+      "name": "Updap Kharka",
+      "email": "udapkharka@gmail.com",
+      "phone": "+975-17704162",
+      "image": "assets/user4.jpg"
+    },
+    {
+      "name": "Sangay Choedrup",
+      "email": "sangaychoedrup@gmail.com",
+      "phone": "+975-17704162",
+      "image": "assets/user3.jpg"
+    },
+    {
+      "name": "Pema Zangmo",
+      "email": "pemazangmo@gmail.com",
+      "phone": "+975-17704162",
+      "image": "assets/user1.jpg"
+    }
+  ]

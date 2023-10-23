@@ -4,6 +4,8 @@ import '../../../common/app_responsive.dart';
 import '../../form/form_field_builder.dart';
 
 class StaffBioDataWidget extends StatefulWidget {
+  const StaffBioDataWidget({super.key});
+
   @override
   _StaffBioDataWidgetState createState() => _StaffBioDataWidgetState();
 }
@@ -45,8 +47,8 @@ class _StaffBioDataWidgetState extends State<StaffBioDataWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         color: AppColor.bgColor,
@@ -131,7 +133,7 @@ class _StaffBioDataWidgetState extends State<StaffBioDataWidget> {
             ],
           ),
         ),
-        SizedBox(width: 40),
+        const SizedBox(width: 40),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

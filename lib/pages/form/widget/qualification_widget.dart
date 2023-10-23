@@ -4,7 +4,7 @@ import '../../../common/app_responsive.dart';
 import '../form_field_builder.dart';
 
 class QualificationWidget extends StatefulWidget {
-  const QualificationWidget({Key? key}) : super(key: key);
+  const QualificationWidget({super.key});
 
   @override
   _QualificationWidgetState createState() => _QualificationWidgetState();

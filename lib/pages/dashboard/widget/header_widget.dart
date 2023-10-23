@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import '../../../pages/aboutus/about_us_page.dart';
+import '../../../pages/contactus/contact_us_page.dart';
 import '../../../common/app_colors.dart';
 import '../../../common/app_responsive.dart';
 import '../../../controllers/menu_controller.dart';
 import 'package:provider/provider.dart';
 
 class HeaderWidget extends StatefulWidget {
+  const HeaderWidget({super.key});
+
   @override
   _HeaderWidgetState createState() => _HeaderWidgetState();
 }
@@ -13,7 +17,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       child: Row(
         children: [
           if (!AppResponsive.isDesktop(context))
@@ -33,7 +37,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             ),
           ),
           if (!AppResponsive.isMobile(context)) ...{
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -134,27 +138,41 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title: const Text('About Us',
-                        style: TextStyle(
-                            color:
-                                Colors.black)), // Set the font color to black
-                    onTap: () {
-                      // Perform logout action
-                      // Add your custom logic here
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                  ),
-                  ListTile(
                     leading: const Icon(Icons.settings_outlined),
                     title: const Text('Settings',
                         style: TextStyle(
                             color:
                                 Colors.black)), // Set the font color to black
                     onTap: () {
-                      // Handle the click event for the settings option
-                      // Add your custom logic here
                       Navigator.of(context).pop(); // Close the dialog
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: const Text('About Us',
+                        style: TextStyle(
+                            color:
+                                Colors.black)), // Set the font color to black
+                    onTap: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AboutUsPage()));
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: const Text('Contact Us',
+                        style: TextStyle(
+                            color:
+                                Colors.black)), // Set the font color to black
+                    onTap: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ContactUsPage()));
                     },
                   ),
                   ListTile(

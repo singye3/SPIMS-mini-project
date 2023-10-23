@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
+
   Future<String> _loadAsset(String path) async {
     return await rootBundle.loadString(path);
   }

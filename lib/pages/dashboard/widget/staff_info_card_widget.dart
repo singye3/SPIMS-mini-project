@@ -20,7 +20,7 @@ class _StaffInfoCardWidgetState extends State<StaffInfoCardWidget> {
         color: AppColor.white,
         borderRadius: BorderRadius.circular(20),
       ),
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           Row(
@@ -48,7 +48,7 @@ class _StaffInfoCardWidgetState extends State<StaffInfoCardWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShowDetailTable()),
+                          builder: (context) => const ShowDetailTable()),
                     );
                   },
                   child: Text(
@@ -74,7 +74,7 @@ class _StaffInfoCardWidgetState extends State<StaffInfoCardWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShowDetailTable()),
+                          builder: (context) => const ShowDetailTable()),
                     );
                   },
                   child: Text(
@@ -142,8 +142,8 @@ class _StaffInfoCardWidgetState extends State<StaffInfoCardWidget> {
             ],
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            child: Row(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Showing 4 out of 4 Results"),
@@ -166,7 +166,7 @@ class _StaffInfoCardWidgetState extends State<StaffInfoCardWidget> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MoreInfoScreenWidget(
+            builder: (context) => const MoreInfoScreenWidget(
                 // name: name,
                 // image: image,
                 // designation: designation,
@@ -181,7 +181,7 @@ class _StaffInfoCardWidgetState extends State<StaffInfoCardWidget> {
               color: Colors.grey[200],
               child: Column(
                 children: [
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(1000),
                     child: Image.asset(
@@ -191,22 +191,22 @@ class _StaffInfoCardWidgetState extends State<StaffInfoCardWidget> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Expanded(
                     child: Column(
                       children: [
                         Text(
                           name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(
                           designation,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),

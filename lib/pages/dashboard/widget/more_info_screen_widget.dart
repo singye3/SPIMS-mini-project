@@ -6,6 +6,8 @@ import '../../../pages/form/widget/staff_biodata_widget.dart';
 import '../../../common/app_responsive.dart';
 
 class MoreInfoScreenWidget extends StatefulWidget {
+  const MoreInfoScreenWidget({super.key});
+
   @override
   _MoreInfoScreenWidgetState createState() => _MoreInfoScreenWidgetState();
 }
@@ -75,9 +77,9 @@ class _MoreInfoScreenWidgetState extends State<MoreInfoScreenWidget>
                     ),
                   ],
                 ),
-                ImageWidget(),
+                const ImageWidget(),
                 const SizedBox(height: 20),
-                StaffBioDataWidget(),
+                const StaffBioDataWidget(),
                 const SizedBox(height: 20),
                 TabBar(
                   controller: _tabController,

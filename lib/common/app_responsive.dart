@@ -6,11 +6,10 @@ class AppResponsive extends StatelessWidget {
   final Widget desktop;
 
   const AppResponsive(
-      {Key? key,
+      {super.key,
       required this.mobile,
       required this.tablet,
-      required this.desktop})
-      : super(key: key);
+      required this.desktop});
 
   static bool isMobile(context) => MediaQuery.of(context).size.width < 900;
   static bool isTablet(context) =>
