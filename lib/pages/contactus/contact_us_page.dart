@@ -1,174 +1,133 @@
 import 'package:flutter/material.dart';
-import '../../common/link_launcher.dart';
-import 'dev_helper.dart';
-import 'developer.dart';
-import '../../common/app_responsive.dart';
+import 'package:spims/common/app_colors.dart';
 
-class ContactUsPage extends StatelessWidget {
-  const ContactUsPage({super.key});
+class ContactUsPage extends StatefulWidget {
+  const ContactUsPage({Key? key}) : super(key: key);
+
+  @override
+  _ContactUsPageState createState() => _ContactUsPageState();
+}
+
+class _ContactUsPageState extends State<ContactUsPage> {
+  String? _selectedIssueType;
+  List<Item> _issueTypes = [
+    Item(
+      'Technical issue',
+      'Description for technical issue',
+    ),
+    Item(
+      'Account problem',
+      'Description for account problem',
+    ),
+    Item(
+      'Billing inquiry',
+      'Description for billing inquiry',
+    ),
+    Item(
+      'General question',
+      'Description for general question',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('About Us'),
-      ),
       backgroundColor: Colors.white,
-      body: AppResponsive.isMobile(context)
-          ? _buildMobileLayout(context)
-          : _buildDesktopLayout(context),
-    );
-  }
-
-  Widget _buildMobileLayout(BuildContext context) {
-    return FutureBuilder<List<Developer>>(
-      future: readDevelopersFromJson(context),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData ||
-            snapshot.data == null ||
-            snapshot.data!.isEmpty) {
-          return const Center(child: Text('No data available.'));
-        } else {
-          final developers = snapshot.data!;
-          return ListView.builder(
-            itemCount: developers.length,
-            itemBuilder: (context, index) {
-              final developer = developers[index];
-              return InkWell(
-                onTap: () => showDeveloperDetails(context, developer),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage(developer.image),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        developer.name,
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                      const SizedBox(height: 5),
-                      InkWell(
-                        onTap: () => sendEmail(developer.email),
-                        child: Text(
-                          developer.email,
-                          style: const TextStyle(
-                            color: Colors.blue,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () => callPhone(developer.phone),
-                        child: Text(
-                          developer.phone,
-                          style: const TextStyle(
-                            color: Colors.blue,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
-        }
-      },
-    );
-  }
-
-  Widget _buildDesktopLayout(BuildContext context) {
-    return FutureBuilder<List<Developer>>(
-      future: readDevelopersFromJson(context),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData ||
-            snapshot.data == null ||
-            snapshot.data!.isEmpty) {
-          return const Center(child: Text('No data available.'));
-        } else {
-          final developers = snapshot.data!;
-          return Center(
-            child: Container(
-              width: 400,
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  const Text(
-                    'Developers',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Expanded(
-                    // Add Expanded widget
-                    child: GridView.extent(
-                      maxCrossAxisExtent: 200,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
-                      children: developers.map((developer) {
-                        return InkWell(
-                          onTap: () => showDeveloperDetails(context, developer),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  backgroundImage: AssetImage(developer.image),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  developer.name,
-                                  style: const TextStyle(color: Colors.black),
-                                ),
-                                const SizedBox(height: 5),
-                                InkWell(
-                                  onTap: () => sendEmail(developer.email),
-                                  child: Text(
-                                    developer.email,
-                                    style: const TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () => callPhone(developer.phone),
-                                  child: Text(
-                                    developer.phone,
-                                    style: const TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ],
+      appBar: AppBar(
+        title: const Text('Contact Us'),
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.grey),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Submit a request',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
-          );
-        }
-      },
+            const SizedBox(height: 16.0),
+            const Text(
+              'What can we help you with?',
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 24.0),
+            Container(
+              color: Colors.white,
+              child: ListView(
+                shrinkWrap: true,
+                children: _issueTypes.map<Widget>((Item item) {
+                  return Container(
+                    color: Colors.white,
+                    child: ExpansionPanelList(
+                      elevation: 1,
+                      expandedHeaderPadding: EdgeInsets.zero,
+                      expansionCallback: (int index, bool isExpanded) {
+                        setState(() {
+                          _selectedIssueType = isExpanded ? item.title : null;
+                        });
+                      },
+                      children: [
+                        ExpansionPanel(
+                          backgroundColor: AppColor.white,
+                          headerBuilder:
+                              (BuildContext context, bool isExpanded) {
+                            return ListTile(
+                              title: Text(
+                                item.title,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            );
+                          },
+                          body: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16.0,
+                              horizontal: 16.0,
+                            ),
+                            child: Text(
+                              item.description,
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          isExpanded: _selectedIssueType == item.title,
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            const SizedBox(height: 24.0),
+            ElevatedButton(
+              onPressed: () {
+                // Handle form submission here
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
     );
   }
+}
+
+class Item {
+  Item(this.title, this.description);
+
+  String title;
+  String description;
 }

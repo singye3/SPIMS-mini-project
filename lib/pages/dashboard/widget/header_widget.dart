@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../pages/aboutus/about_us_page.dart';
-import '../../../pages/contactus/contact_us_page.dart';
+import 'package:spims/common/app_font_size.dart';
+import 'package:spims/pages/notification/notification_page.dart';
+import 'package:spims/pages/profile/profilewidget.dart';
 import '../../../common/app_colors.dart';
 import '../../../common/app_responsive.dart';
 import '../../../controllers/menu_controller.dart';
@@ -17,43 +18,66 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+          color: AppColor.white,
+          borderRadius: BorderRadius.all(Radius.circular(100))),
+      padding: const EdgeInsets.only(left: 20),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
           if (!AppResponsive.isDesktop(context))
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
                 color: AppColor.black,
               ),
               onPressed: Provider.of<MenuControllers>(context, listen: false)
                   .controlMenu,
             ),
-          const Text(
+          Text(
             "Dashboard",
             style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: FontSize.header_1(context),
+                fontWeight: FontWeight.bold,
+                color: AppColor.black),
           ),
           if (!AppResponsive.isMobile(context)) ...{
             const Spacer(),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GestureDetector(
-                  onTap: handleNotificationIconClick,
-                  child: navigationIcon(icon: Icons.notifications_none_rounded),
-                ),
-                GestureDetector(
-                  onTap: handlePersonIconClick,
-                  child: navigationIcon(icon: Icons.person),
-                ),
-                GestureDetector(
-                  onTap: handleNavigationImageClick,
-                  child: navigationImage(imagePath: 'assets/user1.jpg'),
-                ),
-              ],
+            Container(
+              decoration: const BoxDecoration(
+                  color: AppColor.primary,
+                  borderRadius: BorderRadius.all(Radius.circular(100))),
+              margin:
+                  const EdgeInsets.only(left: 12, top: 4, bottom: 4, right: 4),
+              padding: const EdgeInsets.only(left: 22),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NotificationPage()),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.notifications_outlined,
+                      color: AppColor.white,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfileWidget()),
+                      );
+                    },
+                    child: navigationImage(imagePath: 'assets/user1.jpg'),
+                  ),
+                ],
+              ),
             )
           }
         ],
@@ -77,122 +101,10 @@ class _HeaderWidgetState extends State<HeaderWidget> {
       child: ClipOval(
         child: Image.asset(
           imagePath,
-          width: 24,
-          height: 24,
+          width: 34,
+          height: 34,
         ),
       ),
-    );
-  }
-
-  void handleNotificationIconClick() {
-    // Handle the click event for the notification icon
-    // Add your custom logic here
-  }
-
-  void handlePersonIconClick() {
-    // Handle the click event for the person icon
-    // Add your custom logic here
-  }
-
-  void handleNavigationImageClick() {
-    // Handle the click event for the navigation image
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        final screenWidth = MediaQuery.of(context).size.width;
-        final dialogWidth =
-            screenWidth * 0.3; // Adjust the width percentage as desired
-
-        return Align(
-          alignment: Alignment.topRight,
-          child: Container(
-            width: dialogWidth,
-            margin: const EdgeInsets.only(top: 20, right: 20),
-            child: Card(
-              color: Colors.white, // Set the background color to white
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                    leading: const Icon(Icons.person_outline),
-                    title: const Text('Profile',
-                        style: TextStyle(
-                            color:
-                                Colors.black)), // Set the font color to black
-                    onTap: () {
-                      // Handle the click event for the profile option
-                      // Add your custom logic here
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.work_outline),
-                    title: const Text('Training',
-                        style: TextStyle(
-                            color:
-                                Colors.black)), // Set the font color to black
-                    onTap: () {
-                      // Handle the click event for the profile option
-                      // Add your custom logic here
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.settings_outlined),
-                    title: const Text('Settings',
-                        style: TextStyle(
-                            color:
-                                Colors.black)), // Set the font color to black
-                    onTap: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title: const Text('About Us',
-                        style: TextStyle(
-                            color:
-                                Colors.black)), // Set the font color to black
-                    onTap: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AboutUsPage()));
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title: const Text('Contact Us',
-                        style: TextStyle(
-                            color:
-                                Colors.black)), // Set the font color to black
-                    onTap: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ContactUsPage()));
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.logout_outlined),
-                    title: const Text('Logout',
-                        style: TextStyle(
-                            color:
-                                Colors.black)), // Set the font color to black
-                    onTap: () {
-                      // Perform logout action
-                      // Add your custom logic here
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

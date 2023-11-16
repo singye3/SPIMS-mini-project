@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:spims/common/app_responsive.dart';
 
 class ImageWidget extends StatefulWidget {
   const ImageWidget({super.key});
@@ -20,8 +21,8 @@ class _ImageWidgetState extends State<ImageWidget> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(1000),
           child: Container(
-            width: 120,
-            height: 120,
+            width: AppResponsive.isMobile(context) ? 80 : 120,
+            height: AppResponsive.isMobile(context) ? 80 : 120,
             color: Colors.grey[300],
             child: selectedImage.isEmpty
                 ? const Icon(
@@ -32,8 +33,8 @@ class _ImageWidgetState extends State<ImageWidget> {
                   )
                 : Image.asset(
                     selectedImage,
-                    width: 120,
-                    height: 120,
+                    width: AppResponsive.isMobile(context) ? 42 : 120,
+                    height: AppResponsive.isMobile(context) ? 42 : 120,
                     fit: BoxFit.cover,
                   ),
           ),

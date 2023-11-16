@@ -3,6 +3,8 @@ import '../../../common/app_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import 'app_font_size.dart';
+
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({super.key});
 
@@ -26,7 +28,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
             children: [
               Text(
                 DateFormat("MMM, yyyy").format(_focusedDay),
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: FontSize.header_4(context),
+                    color: AppColor.black),
               ),
               Row(
                 children: [
@@ -37,7 +42,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                             DateTime(_focusedDay.year, _focusedDay.month - 1);
                       });
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.chevron_left,
                       color: AppColor.black,
                     ),
@@ -49,7 +54,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                             DateTime(_focusedDay.year, _focusedDay.month + 1);
                       });
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.chevron_right,
                       color: AppColor.black,
                     ),
@@ -71,25 +76,36 @@ class _CalendarWidgetState extends State<CalendarWidget> {
               dowTextFormatter: (date, locale) {
                 return DateFormat("EEE").format(date).toUpperCase();
               },
-              weekendStyle: const TextStyle(fontWeight: FontWeight.bold),
-              weekdayStyle: const TextStyle(fontWeight: FontWeight.bold),
+              weekendStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: AppColor.black,
+                fontSize: 14,
+              ),
+              weekdayStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: AppColor.black,
+                fontSize: 14,
+              ),
             ),
             onPageChanged: (day) {
               _focusedDay = day;
               setState(() {});
             },
-            calendarStyle: CalendarStyle(
+            calendarStyle: const CalendarStyle(
               todayDecoration: BoxDecoration(
-                color: AppColor.yellow,
+                color: AppColor.grey,
                 shape: BoxShape.circle,
               ),
               markerDecoration: BoxDecoration(
-                color: AppColor.yellow,
+                color: AppColor.grey,
                 shape: BoxShape.circle,
+              ),
+              defaultTextStyle: TextStyle(
+                color: AppColor.black,
               ),
             ),
             eventLoader: (day) {
-              ///make event on 22 and 12 date every month
+              /// Make event on 22 and 12 date every month
               if (day.day == 22 || day.day == 12) {
                 return [Event("Event Name", canBubble: true)];
               }
